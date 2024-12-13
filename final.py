@@ -2,7 +2,6 @@ import streamlit as st
 import os
 import pandas as pd
 import re
-from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
