@@ -10,10 +10,10 @@ from langchain.chat_models import ChatOpenAI
 # Carregar variáveis de ambiente
 load_dotenv()
 
-# Configurar chave da API OpenAI
-api_key = os.getenv("OPENAI_API_KEY")
+# Configurar chave da API OpenAI usando st.secrets
+api_key = st.secrets["api_keys"]["OPENAI_API_KEY"]
 if not api_key:
-    st.error("Chave da API OpenAI não encontrada. Configure o arquivo .env corretamente.")
+    st.error("Chave da API OpenAI não encontrada. Configure o Advanced Settings corretamente.")
 
 # Configuração da interface Streamlit
 st.title("Sistema de Comparação de Arquivos SCI e REI com IA")
