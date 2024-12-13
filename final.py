@@ -6,14 +6,13 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain.chat_models import ChatOpenAI
 
-# Carregar variáveis de ambiente
-load_dotenv()
 
-# Configurar chave da API OpenAI usando st.secrets
-api_key = st.secrets["api_keys"]["OPENAI_API_KEY"]
+
+# Configurar chave da API OpenAI com fallback para ambiente local
+api_key = st.secrets.get("api_keys", {}).get("OPENAI_API_KEY", None) or os.getenv("OPENAI_API_KEY")
 if not api_key:
-    st.error("Chave da API OpenAI não encontrada. Configure o Advanced Settings corretamente.")
-
+    st.error("Chave da API OpenAI não encontrada. Configure o Advanced Settings no Streamlit Cloud ou defina a variável OPENAI_API_KEY localmente.")
+    
 # Configuração da interface Streamlit
 st.title("Sistema de Comparação de Arquivos SCI e REI com IA")
 st.subheader("Extração e Comparação de Dados de Equipamentos com Justificativas Baseadas em IA")
